@@ -36,14 +36,14 @@ public class RecipeDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
-        mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        mToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
         Intent intent = getIntent();
 
-        final Recipe recipe = (Recipe) getIntent().getParcelableExtra("Recipe");
-        rv = (RecyclerView) findViewById(R.id.inRecyclerview);
-        rv2 = (RecyclerView) findViewById(R.id.vitaminsRecyclerview);
-        imv = (ImageView) findViewById(R.id.main_backdrop);
+        final Recipe recipe = getIntent().getParcelableExtra("Recipe");
+        rv = findViewById(R.id.inRecyclerview);
+        rv2 = findViewById(R.id.vitaminsRecyclerview);
+        imv = findViewById(R.id.main_backdrop);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setItemAnimator(new DefaultItemAnimator());
@@ -60,9 +60,9 @@ public class RecipeDetails extends AppCompatActivity {
         imv.setImageBitmap(b);*/
 
 
-        desc = (TextView) findViewById(R.id.desc);
-        url = (TextView) findViewById(R.id.url);
-        l_desc = (LinearLayout) findViewById(R.id.layout_desc);
+        desc = findViewById(R.id.desc);
+        url = findViewById(R.id.url);
+        l_desc = findViewById(R.id.layout_desc);
 
 
         try {

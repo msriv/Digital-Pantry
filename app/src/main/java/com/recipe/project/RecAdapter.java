@@ -74,10 +74,10 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.MyViewHolder> {
         public MyViewHolder(View view) {
             super(view);
 
-            name = (TextView) view.findViewById(R.id.name);
-            rbar = (RatingBar) view.findViewById(R.id.ratingBar);
-            img = (ImageView) view.findViewById(R.id.imgView);
-            rl = (RelativeLayout) view.findViewById(R.id.container);
+            name = view.findViewById(R.id.name);
+            rbar = view.findViewById(R.id.ratingBar);
+            img = view.findViewById(R.id.imgView);
+            rl = view.findViewById(R.id.container);
 
 
         }

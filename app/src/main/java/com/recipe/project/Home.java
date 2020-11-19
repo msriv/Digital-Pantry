@@ -46,13 +46,13 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ip = (EditText) findViewById(R.id.input);
-        add = (Button) findViewById(R.id.add);
-        rv = (RecyclerView) findViewById(R.id.list);
+        ip = findViewById(R.id.input);
+        add = findViewById(R.id.add);
+        rv = findViewById(R.id.list);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setItemAnimator(new DefaultItemAnimator());
 
-        go = (Button) findViewById(R.id.go);
+        go = findViewById(R.id.go);
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         mAdapter = new InputAdapter(iList, this);
@@ -208,6 +208,7 @@ public class Home extends AppCompatActivity {
     public void onBackPressed() {
 
 
+
         if (doubleBackToExitPressedOnce) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
@@ -231,4 +232,6 @@ public class Home extends AppCompatActivity {
 
 
 }
+
+
 

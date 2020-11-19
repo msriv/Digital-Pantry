@@ -17,7 +17,7 @@ import java.util.List;
  * Created by sarthak on 3/25/2017.
  */
 
-public class InputAdapter extends RecyclerView.Adapter<com.recipe.project.InputAdapter.MyViewHolder> {
+public class InputAdapter extends RecyclerView.Adapter<InputAdapter.MyViewHolder> {
 
     Context context;
     List<String> iList;
@@ -30,7 +30,7 @@ public class InputAdapter extends RecyclerView.Adapter<com.recipe.project.InputA
 
 
     @Override
-    public com.recipe.project.InputAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public InputAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.input_element, parent, false);
 
@@ -38,7 +38,7 @@ public class InputAdapter extends RecyclerView.Adapter<com.recipe.project.InputA
     }
 
     @Override
-    public void onBindViewHolder(com.recipe.project.InputAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(InputAdapter.MyViewHolder holder, final int position) {
         String item = iList.get(position);
         holder.name.setText(item);
 
@@ -77,6 +77,7 @@ public class InputAdapter extends RecyclerView.Adapter<com.recipe.project.InputA
                 alert.show();
 
 
+
                 return false;
             }
         });
@@ -94,7 +95,7 @@ public class InputAdapter extends RecyclerView.Adapter<com.recipe.project.InputA
         public MyViewHolder(View view) {
             super(view);
 
-            name = (TextView) view.findViewById(R.id.name);
+            name = view.findViewById(R.id.name);
 
 
         }

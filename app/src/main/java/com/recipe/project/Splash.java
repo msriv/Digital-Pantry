@@ -11,12 +11,11 @@ import com.bumptech.glide.Glide;
 
 public class Splash extends AppCompatActivity {
     ImageView background;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        background = (ImageView) findViewById(R.id.s_img);
+        background = findViewById(R.id.s_img);
 
 
         Glide.with(this)

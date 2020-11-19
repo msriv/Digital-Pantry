@@ -3,6 +3,8 @@ package com.recipe.project;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button bt = (Button) findViewById(R.id.go);
+        Button bt = findViewById(R.id.go);
 
-        recyclerView = (RecyclerView) findViewById(R.id.list_rec);
+        recyclerView = findViewById(R.id.list_rec);
 
         String baseurl = "https://mighty-waters-29256.herokuapp.com/";
         Intent intent = getIntent();
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         //rAdapter.notifyDataSetChanged();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void setData(String url) {
@@ -188,5 +191,39 @@ public class MainActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(strReq);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_feedback) {
+            startActivity(new Intent(MainActivity.this, Feedback.class));
+            return true;
+        }
+        if (id == R.id.action_about) {
+            startActivity(new Intent(MainActivity.this, AboutUs.class));
+            return true;
+        }
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(MainActivity.this, Home.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            // close this activity and return to preview activity (if there is any)
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -47,7 +47,7 @@ public class IngAdapter extends RecyclerView.Adapter<IngAdapter.MyViewHolder> {
         public MyViewHolder(View view) {
             super(view);
 
-            name = (TextView) view.findViewById(R.id.name);
+            name = view.findViewById(R.id.name);
 
 
         }
