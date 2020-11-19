@@ -3,6 +3,7 @@ package com.recipe.project;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     result = new JSONObject(response);
 
                     tokenList = result.getJSONArray("itemListElement");
-
+                    Log.d("tokenList", tokenList.toString());
                     for (int i = 0; i < tokenList.length(); i++) {
                         Recipe r = new Recipe();
                         JSONObject temp;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         Nutrition nutrition = new Nutrition();
 
                         temp = tokenList.getJSONObject(i);
-
+                        Log.d("temp", temp.toString());
                         r.setName(temp.getString("name"));
                         r.setImg(temp.getString("image"));
                         try {
@@ -98,51 +99,53 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             r.setDesc(null);
                         }
+                        try {
+                            nut = temp.getJSONObject("nutrition");
+                            try {
+                                nutrition.setCarbohydrateContent(nut.getString("carbohydrateContent"));
+                            } catch (Exception e) {
+                                nutrition.setCarbohydrateContent("");
+                            }
 
-                        nut = temp.getJSONObject("nutrition");
+                            try {
+                                nutrition.setCholesterolContent(nut.getString("cholesterolContent"));
+                            } catch (Exception e) {
+                                nutrition.setCholesterolContent("");
+                            }
+                            try {
+                                nutrition.setFatContent(nut.getString("fatContent"));
+                            } catch (Exception e) {
+                                nutrition.setFatContent("");
+                            }
+                            try {
+                                nutrition.setFiberContent(nut.getString("fiberContent"));
+                            } catch (Exception e) {
+                                nutrition.setFiberContent("");
+                            }
+                            try {
+                                nutrition.setProteinContent(nut.getString("proteinContent"));
+                            } catch (Exception e) {
+                                nutrition.setProteinContent("");
+                            }
+                            try {
+                                nutrition.setSaturatedFatContent(nut.getString("saturatedFatContent"));
+                            } catch (Exception e) {
+                                nutrition.setSaturatedFatContent("");
+                            }
 
-                        try {
-                            nutrition.setCarbohydrateContent(nut.getString("carbohydrateContent"));
-                        } catch (Exception e) {
-                            nutrition.setCarbohydrateContent("");
-                        }
+                            try {
+                                nutrition.setSodiumContent(nut.getString("sodiumContent"));
+                            } catch (Exception e) {
+                                nutrition.setSodiumContent("");
+                            }
 
-                        try {
-                            nutrition.setCholesterolContent(nut.getString("cholesterolContent"));
+                            try {
+                                nutrition.setSugarContent(nut.getString("sugarContent"));
+                            } catch (Exception e) {
+                                nutrition.setSugarContent("");
+                            }
                         } catch (Exception e) {
-                            nutrition.setCholesterolContent("");
-                        }
-                        try {
-                            nutrition.setFatContent(nut.getString("fatContent"));
-                        } catch (Exception e) {
-                            nutrition.setFatContent("");
-                        }
-                        try {
-                            nutrition.setFiberContent(nut.getString("fiberContent"));
-                        } catch (Exception e) {
-                            nutrition.setFiberContent("");
-                        }
-                        try {
-                            nutrition.setProteinContent(nut.getString("proteinContent"));
-                        } catch (Exception e) {
-                            nutrition.setProteinContent("");
-                        }
-                        try {
-                            nutrition.setSaturatedFatContent(nut.getString("saturatedFatContent"));
-                        } catch (Exception e) {
-                            nutrition.setSaturatedFatContent("");
-                        }
-
-                        try {
-                            nutrition.setSodiumContent(nut.getString("sodiumContent"));
-                        } catch (Exception e) {
-                            nutrition.setSodiumContent("");
-                        }
-
-                        try {
-                            nutrition.setSugarContent(nut.getString("sugarContent"));
-                        } catch (Exception e) {
-                            nutrition.setSugarContent("");
+                            e.printStackTrace();
                         }
 
                         r.setNutrition(nutrition);
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 } finally {
                     rAdapter.notifyDataSetChanged();
                 }
-                pDialog.hide();
+                pDialog.dismiss();
 
             }
         }, new Response.ErrorListener() {
@@ -185,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("tis: ", "Error: " + error.getMessage());
-                pDialog.hide();
+                pDialog.dismiss();
             }
         });
 
