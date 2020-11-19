@@ -94,10 +94,6 @@ public class AboutUs extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_feedback) {
-            startActivity(new Intent(AboutUs.this, Feedback.class));
-            return true;
-        }
         if (id == R.id.action_about) {
             startActivity(new Intent(AboutUs.this, AboutUs.class));
             return true;

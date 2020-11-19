@@ -71,10 +71,6 @@ public class Feedback extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_feedback) {
-            startActivity(new Intent(Feedback.this, Feedback.class));
-            return true;
-        }
         if (id == R.id.action_about) {
             startActivity(new Intent(Feedback.this, AboutUs.class));
             return true;
