@@ -50,7 +50,11 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'org.apache.logging.log4j:log4j-api:2.8.2'
     implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.8.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation "androidx.room:room-runtime:2.2.5"
+    annotationProcessor "androidx.room:room-compiler:2.2.5"
 
     implementation 'ai.api:libai:1.4.8'
     implementation 'ai.api:sdk:2.0.5@aar'
