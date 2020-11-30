@@ -6,22 +6,32 @@
     android:layout_margin="8dp">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:padding="10dp"
+            android:text="Enter Ingredients" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
             android:orientation="horizontal"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:paddingHorizontal="10dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9">
+                android:layout_weight="0.95">
 
                 <EditText
                     android:maxLines="1"
@@ -33,13 +43,21 @@
                     android:id="@+id/input" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <Button
-                android:drawableLeft="@drawable/ic_action_name"
-                android:layout_width="50dp"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/add" />
+                android:src="@drawable/ic_action_name"
+                android:id="@+id/add"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp" />
+
+            <!--            <Button-->
+            <!--                android:drawableLeft="@drawable/ic_action_name"-->
+            <!--                android:layout_width="100dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_weight="0.2"-->
+            <!--                android:layout_marginLeft="10dp"-->
+            <!--                android:id="@+id/add" />-->
 
         </LinearLayout>
 

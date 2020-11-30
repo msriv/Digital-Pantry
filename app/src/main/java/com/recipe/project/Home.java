@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
@@ -33,9 +34,9 @@ import ai.api.model.Result;
 public class Home extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     private EditText ip;
-    //private FloatingActionButton add;
+    private FloatingActionButton add;
     private RecyclerView rv;
-    Button go, add;
+    Button go;
     private AIService aiService;
 
     private final List<String> iList = new ArrayList<>();

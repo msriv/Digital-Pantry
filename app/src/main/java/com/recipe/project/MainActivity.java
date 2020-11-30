@@ -27,6 +27,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,9 +93,14 @@ public class MainActivity extends AppCompatActivity {
                         Nutrition nutrition = new Nutrition();
 
                         temp = tokenList.getJSONObject(i);
-                        Log.d("temp", temp.toString());
+                        String img = temp.getString("image");
+                        Pattern pattern = Pattern.compile("\"(.*?)\"");
+                        Matcher matcher = pattern.matcher(img);
+                        if (matcher.find()) {
+                            r.setImg(matcher.group(1).replace("\\", ""));
+                        }
                         r.setName(temp.getString("name"));
-                        r.setImg(temp.getString("image"));
+//                        r.setImg(temp.getString("image"));
                         try {
                             r.setDesc(temp.getString("description"));
                         } catch (Exception e) {
