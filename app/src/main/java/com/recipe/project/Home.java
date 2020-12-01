@@ -69,8 +69,8 @@ public class Home extends AppCompatActivity {
      */
     private void initializeUIElements() {
         imageView = findViewById(R.id.modelimage);
-        listView = findViewById(R.id.list);
-        Button takepicture = findViewById(R.id.camera);
+//        listView = findViewById(R.id.list);
+        FloatingActionButton takepicture = findViewById(R.id.camera);
         /*
          * Creating an instance of our tensor image classifier
          */
@@ -180,7 +180,7 @@ public class Home extends AppCompatActivity {
             // creating an array adapter to display the classification result in list view
             ArrayAdapter<String> predictionsAdapter = new ArrayAdapter<>(
                     this, R.layout.support_simple_spinner_dropdown_item, predicitonsList);
-            listView.setAdapter(predictionsAdapter);
+//            listView.setAdapter(predictionsAdapter);
 
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -201,7 +201,7 @@ public class Home extends AppCompatActivity {
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         mAdapter = new InputAdapter(iList, this);
-
+        initializeUIElements();
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
