@@ -166,17 +166,17 @@ public class Home extends AppCompatActivity {
             Bitmap photo = (Bitmap) Objects.requireNonNull(Objects.requireNonNull(data).getExtras()).get("data");
             // displaying this bitmap in imageview
             imageView.setImageBitmap(photo);
-
+//            Log.d("photo",photo.toString());
             // pass this bitmap to classifier to make prediction
-            List<ImageClassifier.Recognition> predicitons = imageClassifier.recognizeImage(
+            ImageClassifier.Recognition predicitons = imageClassifier.recognizeImage(
                     photo, 0);
 
             // creating a list of string to display in list view
             final List<String> predicitonsList = new ArrayList<>();
-            for (ImageClassifier.Recognition recog : predicitons) {
-                predicitonsList.add(recog.getName() + "  ::::::::::  " + recog.getConfidence());
-            }
-
+//            for (ImageClassifier.Recognition recog : predicitons) {
+//                predicitonsList.add(recog.getName() + "  ::::::::::  " + recog.getConfidence());
+//            }
+            Log.d("classified as:", predicitons.getName());
             // creating an array adapter to display the classification result in list view
             ArrayAdapter<String> predictionsAdapter = new ArrayAdapter<>(
                     this, R.layout.support_simple_spinner_dropdown_item, predicitonsList);

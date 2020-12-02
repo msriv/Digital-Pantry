@@ -5,6 +5,7 @@ package com.recipe.project;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
@@ -47,7 +48,7 @@ public class ImageClassifier {
     private static final float IMAGE_STD = 1.0f;
     private static final float IMAGE_MEAN = 0.0f;
 
-    private static final int MAX_SIZE = 5;
+    private static final int MAX_SIZE = 1;
 
     /**
      * Image size along the x axis.
@@ -84,9 +85,9 @@ public class ImageClassifier {
          * The loaded TensorFlow Lite model.
          */
         MappedByteBuffer classifierModel = FileUtil.loadMappedFile(activity,
-                "medel_unquant.tflite");
+                "model_unquant.tflite");
         // Loads labels out from the label file.
-        labels = FileUtil.loadLabels(activity, "labels.txt");
+        labels = FileUtil.loadLabels(activity, "labels2.txt");
 
         tensorClassifier = new Interpreter(classifierModel, null);
 
@@ -185,19 +186,24 @@ public class ImageClassifier {
      * @param sensorOrientation orientation of the camera
      * @return classification results
      */
-    public List<Recognition> recognizeImage(final Bitmap bitmap, final int sensorOrientation) {
+    public Recognition recognizeImage(final Bitmap bitmap, final int sensorOrientation) {
         List<Recognition> recognitions = new ArrayList<>();
+        Log.d("photo",bitmap.toString());
         inputImageBuffer = loadImage(bitmap, sensorOrientation);
+        Log.d("imagebuffer",inputImageBuffer.toString());
         tensorClassifier.run(inputImageBuffer.getBuffer(), probabilityImageBuffer.getBuffer().rewind());
+        Log.d("photo2",bitmap.toString());
         // Gets the map of label and probability.
         Map<String, Float> labelledProbability = new TensorLabel(labels,
                 probabilityProcessor.process(probabilityImageBuffer)).getMapWithFloatValue();
         for (Map.Entry<String, Float> entry : labelledProbability.entrySet()) {
+            Log.d("Key ->", entry.getKey());
+            Log.d("Value ->", entry.getValue()+"");
             recognitions.add(new Recognition(entry.getKey(), entry.getValue()));
         }
         // Find the best classifications by sorting predicitons based on confidence
         Collections.sort(recognitions);
         // returning top 5 predicitons
-        return recognitions.subList(0, MAX_SIZE);
+        return recognitions.get(0);
     }
 }
