@@ -158,6 +158,10 @@ public class Home extends AppCompatActivity {
         startActivityForResult(cameraIntent, CAMERA_REQEUST_CODE);
     }
 
+    private Bitmap ARGBBitmap(Bitmap img) {
+        return img.copy(Bitmap.Config.ARGB_8888,true);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         // if this is the result of our camera image request
@@ -169,7 +173,7 @@ public class Home extends AppCompatActivity {
 //            Log.d("photo",photo.toString());
             // pass this bitmap to classifier to make prediction
             ImageClassifier.Recognition predicitons = imageClassifier.recognizeImage(
-                    photo, 0);
+                    ARGBBitmap(photo), 0);
 
             // creating a list of string to display in list view
             final List<String> predicitonsList = new ArrayList<>();
@@ -178,6 +182,7 @@ public class Home extends AppCompatActivity {
 //            }
             Log.d("classified as:", predicitons.getName());
             // creating an array adapter to display the classification result in list view
+            ip.setText(predicitons.getName());
             ArrayAdapter<String> predictionsAdapter = new ArrayAdapter<>(
                     this, R.layout.support_simple_spinner_dropdown_item, predicitonsList);
 //            listView.setAdapter(predictionsAdapter);

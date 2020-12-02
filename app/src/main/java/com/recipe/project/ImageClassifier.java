@@ -87,7 +87,7 @@ public class ImageClassifier {
         MappedByteBuffer classifierModel = FileUtil.loadMappedFile(activity,
                 "model_unquant.tflite");
         // Loads labels out from the label file.
-        labels = FileUtil.loadLabels(activity, "labels2.txt");
+        labels = FileUtil.loadLabels(activity, "labels.txt");
 
         tensorClassifier = new Interpreter(classifierModel, null);
 
