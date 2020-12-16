@@ -85,9 +85,9 @@ public class ImageClassifier {
          * The loaded TensorFlow Lite model.
          */
         MappedByteBuffer classifierModel = FileUtil.loadMappedFile(activity,
-                "model_unquant.tflite");
+                "mobilenet_v1_1.0_224_quant.tflite");
         // Loads labels out from the label file.
-        labels = FileUtil.loadLabels(activity, "labels.txt");
+        labels = FileUtil.loadLabels(activity, "labels_mobilenet_quant_v1_224.txt");
 
         tensorClassifier = new Interpreter(classifierModel, null);
 
